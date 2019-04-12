@@ -3,3 +3,4 @@
 .RData
 .env
 *.xls
+.DS_Store
