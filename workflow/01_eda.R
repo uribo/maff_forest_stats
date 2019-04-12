@@ -5,6 +5,7 @@ source(here::here("data-raw/parse_genkyo.R"))
 
 my_plan <-
   drake_plan(
+    conflict_prefer("filter", winner = "dplyr"),
     cross_data_counts =
       df_conifer_age %>%
       count(year, target, prefecture),
