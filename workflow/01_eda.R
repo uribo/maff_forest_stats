@@ -17,6 +17,7 @@ my_plan <-
     ggplot(aes(age, value)) +
     geom_bar(stat = "identity") +
     facet_wrap(~ prefecture))
+# unlink(".drake/", recursive = TRUE)
 drake::make(my_plan,
             log_progress = FALSE,
             cache_log_file = TRUE,

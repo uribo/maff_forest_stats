@@ -4,3 +4,4 @@
 .env
 *.xls
 .DS_Store
+*.log

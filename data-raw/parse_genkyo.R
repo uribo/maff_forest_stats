@@ -1,15 +1,18 @@
 ####################################
 # 森林現況 樹種別齢級別面積データ(xls) の読み込み
 ####################################
-
 library(purrr)
 library(assertr)
 library(ensurer)
 library(conflicted)
+
 input_csv <-
   fs::dir_ls(here::here("data"), regexp = "[0-9]{4}_genkyo_conifer_age_class.csv$")
 
 if (length(input_csv) != 3) {
+
+  source(here::here("data-raw/download_genkyo.R"))
+
   library(readxl)
   library(dplyr)
   source(here::here("R/read_genkyo_xls.R"))
@@ -58,7 +61,7 @@ if (length(input_csv) != 3) {
   df_conifer_age %>%
     group_by(year) %>%
     group_walk(~ readr::write_csv(.x,
-                                  path = here::here("data", stringr::str_c(.x$year, "_genkyo_conifer_age_class.csv"))))
+                                  path = here::here("data", stringr::str_c(.y$year, "_genkyo_conifer_age_class.csv"))))
 } else {
   df_conifer_age <-
     input_csv %>%
