@@ -1,9 +1,10 @@
-read_genkyo_xls <- function(input, sheet_index = 1) {
+read_genkyo_xls <- function(input, sheet_index = 1, tidy = FALSE) {
   target <-
     readxl::excel_sheets(input) %>%
     purrr::pluck(sheet_index)
 
-  readxl::read_excel(input,
+  d <-
+    readxl::read_excel(input,
                      sheet = sheet_index,
                        range = "C6:V52",
                        col_names = FALSE) %>%
@@ -22,5 +23,14 @@ read_genkyo_xls <- function(input, sheet_index = 1) {
         "prefecture",
         stringr::str_c("age_", seq.int(1, 18)),
         "age_19over")
-    )
+    ) %>%
+    dplyr::mutate(target = stringr::str_replace(target,
+                                                pattern = "\\u30b9\\u30ae\\uff9e",
+                                                replacement = "\\u30b9\\u30ae"))
+
+  if (rlang::is_false(tidy))
+    d
+  else
+    d %>%
+    tidyr::gather("age", "value", tidyselect::starts_with("age_"))
 }

@@ -28,7 +28,6 @@ target_sheet_index <-
 # read_genkyo_xls(input_xls[3], sheet_index = target_sheet_index[2]) %>%
 #   verify(dim(.) == c(47, 22))
 
-
 # 2/2 ファイル、シートの組み合わせでデータを読み込む ---------------------------------------------
 input_sets <-
   list(
@@ -38,5 +37,11 @@ input_sets <-
 
 df_conifer_age <-
   input_sets %>%
-  map_dfr(lift(read_genkyo_xls), .id = "index") %>%
-  verify(dim(.) == c(47 * length(input_sets), 23))
+  map_dfr(lift(read_genkyo_xls, tidy = TRUE)) %>%
+  # 行数: 47都道府県 * 組み合わせ数(ファイル、シート) * age列数
+  verify(dim(.) == c(47 * length(input_sets) * 19, 5))
+
+df_conifer_age %>%
+  count(target) %>%
+  verify(nrow(.) == 2L) %>%
+  invisible()
