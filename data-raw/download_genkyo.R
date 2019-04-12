@@ -49,5 +49,15 @@ if (length(fs::dir_ls(here::here("data-raw"), regexp = "genkyo_[0-9]{4}.xls")) !
         xml2::url_absolute(.x)) %>%
     ensure(length(.) == 3L)
 
-  # [TODO] 2/2 data-rawフォルダにダウンロード ------------------------------
+  # 2/2 data-rawフォルダにダウンロード ------------------------------
+  dl_links %>%
+    walk2(
+      .y = names(dl_links),
+      .f = ~
+        curl::curl_download(.x,
+                            destfile = glue::glue("data-raw/genkyo_{year}.",
+                                                  # ファイル形式を取得 hoge.xls --> xls
+                                                  tools::file_ext(.x),
+                                                  # 和暦から西暦へ H29 --> 2017
+                                                  year = odkitchen::convert_jyr(.y))))
 }

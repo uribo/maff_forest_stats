@@ -18,4 +18,6 @@ RUN set -x && \
     ensurer \
     here \
     styler && \
+  installGithub.r \
+    "uribo/odkitchen" && \
   rm -rf /tmp/downloaded_packages/ /tmp/*.rds
