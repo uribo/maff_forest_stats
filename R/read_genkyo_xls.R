@@ -32,5 +32,6 @@ read_genkyo_xls <- function(input, sheet_index = 1, tidy = FALSE) {
     d
   else
     d %>%
-    tidyr::gather("age", "value", tidyselect::starts_with("age_"))
+    tidyr::gather("age", "value", tidyselect::starts_with("age_")) %>%
+    mutate(age = forcats::fct_inorder(age))
 }

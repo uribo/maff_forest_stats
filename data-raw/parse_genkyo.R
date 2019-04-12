@@ -68,5 +68,6 @@ if (length(input_csv) != 3) {
                                prefecture,
                                age,
                                value)) %>%
-    verify(dim(.) == c(5358, 5))
+    verify(dim(.) == c(5358, 5)) %>%
+    dplyr::mutate(age = forcats::fct_inorder(age))
 }
