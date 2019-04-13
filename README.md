@@ -3,6 +3,15 @@
 
 このリポジトリは [Tokyo.R#77](https://tokyor.connpass.com/event/125793/) での発表のためのサンプルリポジトリです。
 
+## 使い方
+
+このリポジトリの内容は次のいずれかの方法でダウンロード可能です。
+
+- Rから`usethis::use_course("bit.ly/tokyor77uribo")`
+- 端末上で`git clone git@github.com:uribo/maff_forest_stats.git maff_forest_stats`
+
+`workflow/01_eda.R` を開いてコードを実行してください。
+
 ## このリポジトリの構築手順
 
 ```r
