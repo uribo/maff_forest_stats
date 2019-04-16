@@ -18,6 +18,7 @@ RUN set -x && \
     conflicted \
     drake \
     ensurer \
+    gghighlight \
     here \
     styler && \
   installGithub.r \
