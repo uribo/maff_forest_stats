@@ -9,17 +9,19 @@ my_plan <-
     cross_data_counts =
       df_conifer_age %>%
       count(year, target, prefecture),
-  missing_counts =
-    df_conifer_age %>%
-    summarise_all(list(~ sum(is.na(.)))),
-  plot1 =
-    df_conifer_age %>%
-    filter(year == 2007, target == "人工林スギ") %>%
-    ggplot(aes(age, value)) +
-    geom_bar(stat = "identity") +
-    theme_gray(base_family = "IPAPGothic") +
-    facet_wrap(~ prefecture))
-# unlink(".drake/", recursive = TRUE)
+    missing_counts =
+      df_conifer_age %>%
+      summarise_all(list(~ sum(is.na(.)))),
+    plot1 =
+      df_conifer_age %>%
+      filter(year == 2017,
+             prefecture %in% c("東京都", "神奈川県", "茨城県")) %>%
+      ggplot(aes(age, value, fill = target)) +
+      geom_bar(stat = "identity") +
+      theme_gray(base_family = "IPAPGothic") +
+      gghighlight::gghighlight() +
+      facet_grid(prefecture ~ target) +
+      guides(fill = FALSE))
 drake::make(my_plan,
             log_progress = FALSE,
             cache_log_file = TRUE,
