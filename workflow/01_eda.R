@@ -17,6 +17,7 @@ my_plan <-
     filter(year == 2007, target == "人工林スギ") %>%
     ggplot(aes(age, value)) +
     geom_bar(stat = "identity") +
+    theme_gray(base_family = "IPAPGothic") +
     facet_wrap(~ prefecture))
 # unlink(".drake/", recursive = TRUE)
 drake::make(my_plan,
