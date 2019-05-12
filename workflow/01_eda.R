@@ -40,4 +40,11 @@ drake::loadd(list = my_plan %>%
 cross_data_counts
 missing_counts
 
-plot1
+if (dir.exists(here::here("figures")) == FALSE)
+  dir.create(here::here("figures"))
+
+ggsave(plot1,
+       filename = here::here("figures/2017_age_class.png"),
+       dpi = "retina",
+       width = 9,
+       height = 5)

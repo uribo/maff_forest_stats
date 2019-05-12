@@ -3,6 +3,8 @@
 
 このリポジトリは [Tokyo.R#77](https://tokyor.connpass.com/event/125793/) での発表のためのサンプルリポジトリです。
 
+![](figures/2017_age_class.png)
+
 ## 使い方
 
 このリポジトリの内容は次のいずれかの方法でダウンロード可能です。
