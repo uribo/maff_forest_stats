@@ -1,4 +1,4 @@
-FROM rocker/geospatial:3.6.0
+FROM rocker/tidyverse:3.6.1
 
 RUN set -x && \
   apt-get update && \
@@ -9,16 +9,11 @@ RUN set -x && \
 
 ARG GITHUB_PAT
 
+ENV RENV_VERSION 0.6.0-41
+
 RUN set -x && \
   install2.r --error \
-    assertr \
-    conflicted \
-    drake \
-    ensurer \
-    gghighlight \
-    here \
     styler && \
   installGithub.r \
-    "rstudio/renv" \
-    "uribo/odkitchen" && \
+    "rstudio/renv@${RENV_VERSION}" && \
   rm -rf /tmp/downloaded_packages/ /tmp/*.rds
