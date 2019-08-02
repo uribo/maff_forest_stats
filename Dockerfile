@@ -19,5 +19,6 @@ RUN set -x && \
     here \
     styler && \
   installGithub.r \
+    "rstudio/renv" \
     "uribo/odkitchen" && \
   rm -rf /tmp/downloaded_packages/ /tmp/*.rds
